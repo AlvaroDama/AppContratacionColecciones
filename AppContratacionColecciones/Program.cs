@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AppContratacionColecciones.Clases;
 using AppContratacionColecciones.Excepciones;
 
@@ -84,10 +79,12 @@ namespace AppContratacionColecciones
                 {
                     Console.Clear();
                     Console.WriteLine("ALTA DE EMPLEADO\n");
-                    Console.WriteLine("{0}) {1}", Puestos.Programador.GetHashCode(), Puestos.Programador);
-                    Console.WriteLine("{0}) {1}", Puestos.Analista.GetHashCode(), Puestos.Analista);
-                    Console.WriteLine("{0}) {1}", Puestos.DirectorProyectos.GetHashCode(), Puestos.DirectorProyectos);
-                    Console.WriteLine("{0}) {1}", Puestos.DirectorIT.GetHashCode(), Puestos.DirectorIT);
+                    Array values = Enum.GetValues(typeof(Puestos));
+
+                    foreach (Puestos val in values)
+                    {
+                        Console.WriteLine(String.Format("{1}) {0}", Enum.GetName(typeof(Puestos), val), val.GetHashCode()));
+                    }
                     Console.Write("Puesto a ocupar: ");
                     
                 } while (!Enum.TryParse(Console.ReadLine(), out pue) || !Enum.IsDefined(typeof(Puestos),pue));
